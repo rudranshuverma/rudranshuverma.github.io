@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rudranshu Verma | Cyber Security & Ethical Hacking Portfolio</title>
+    <style>
+        :root {
+            --primary: #00ff66;
+            --secondary: #00bcff;
+            --bg: #0a0a16;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(0, 255, 102, 0.05) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(0, 188, 255, 0.05) 0px, transparent 50%);
+        }
+
+        /* 3D Moving Perspective Container */
+        .perspective-container {
+            perspective: 1000px;
+            width: 100%;
+            max-width: 750px;
+            padding: 20px;
+        }
+
+        /* 3D Glass Card */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: rotateX(2deg) rotateY(-2deg);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 24px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.3;
+            transition: opacity 0.5s;
+        }
+
+        .card:hover {
+            transform: rotateX(0deg) rotateY(0deg) translateY(-5px);
+            box-shadow: 
+                0 40px 80px rgba(0, 255, 102, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover::before {
+            opacity: 0.8;
+        }
+
+        /* Hacker Badge */
+        .badge {
+            display: inline-block;
+            background: rgba(0, 255, 102, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 40%, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .bio-text {
+            color: #b3b3c6;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .bio-text strong {
+            color: #ffffff;
+        }
+
+        /* Grid of Skills / Intel */
+        .intel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .intel-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .intel-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--secondary);
+            transform: scale(1.03);
+        }
+
+        .intel-title {
+            font-size: 0.75rem;
+            color: #8c8c9e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .intel-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Terminal Footer Graphic */
+        .terminal-status {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            color: #666680;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: 0 0 10px var(--primary);
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="perspective-container">
+        <div class="card">
+            <span class="badge">SECURE NODE // ACTIVATED</span>
+            
+            <h1>Rudranshu Verma</h1>
+            <div class="subtitle">Ethical Hacker & Web Architect</div>
+            
+            <p class="bio-text">
+                Welcome to my digital footprint. I am <strong>Rudranshu Verma</strong>, a 14-year-old Tech Enthusiast and Student at <strong>Jawahar Navodaya Vidyalaya (JNV)</strong>, currently pursuing my 10th-standard education. 
+                Bridging the gap between code and security, I specialize in navigating <strong>Kali Linux environments</strong>, analyzing network vulnerabilities, and developing highly secure, ultra-modern web interfaces.
+            </p>
+
+            <!-- International Style Info Blocks -->
+            <div class="intel-grid">
+                <div class="intel-item">
+                    <div class="intel-title">Environment</div>
+                    <div class="intel-value" style="color: var(--primary);">Kali Linux</div>
+                </div>
+                <div class="intel-item">
+                    <div class="intel-title">Specialization</div>
+                    <div class="intel-value">Ethical Hacking</div>
+                </div>
+                <div class="intel-item">
+                    <div class="intel-title">Institution</div>
+                    <div class="intel-value">JNV Student</div>
+                </div>
+                <div class="intel-item">
+                    <div class="intel-title">Analysis</div>
+                    <div class="intel-value" style="color: var(--secondary);">Politics</div>
+                </div>
+            </div>
+
+            <div class="terminal-status">
+                <div class="status-dot"></div>
+                <span>root@rudranshu-verma:~# systemctl status future_legend.service — Active (Running)</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
